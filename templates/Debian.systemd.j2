@@ -1,0 +1,19 @@
+[Unit]
+Description=Buildbot Worker %I
+After=network.target
+
+[Service]
+User={{ buildbot_worker_user }}
+Group={{ buildbot_worker_group }}
+WorkingDirectory={{ buildbot_worker_root_dir }}/workers
+ExecStart={{ buildbot_worker_executable }} --verbose start --nodaemon %I
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+ProtectSystem=full
+ProtectHome=yes
+PrivateDevices=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
+Alias=buildworker.service

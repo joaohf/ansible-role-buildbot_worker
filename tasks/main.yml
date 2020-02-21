@@ -6,6 +6,15 @@
 
 - include: "install-{{ ansible_os_family }}.yml"
 
+- name: Create buildbot_worker group
+  group:
+    name: "{{ buildbot_worker_group }}"
+
+- name: Create buildbot_worker user
+  user:
+    name: "{{ buildbot_worker_user }}"
+    group: "{{ buildbot_worker_group }}"
+
 - name: Create buildbot_worker_root_dir directory
   file:
     path: "{{ buildbot_worker_root_dir }}"

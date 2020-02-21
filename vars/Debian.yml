@@ -6,3 +6,4 @@ __buildbot_worker_package: python3-buildbot-worker
 __buildbot_worker_extra_packages: []
 __buildbot_worker_root_dir: /var/lib/buildbot
 __buildbot_worker_conf_dir: "{{ __buildbot_worker_root_dir }}/workers/default"
+__buildbot_worker_executable: /usr/local/bin/buildbot-worker
