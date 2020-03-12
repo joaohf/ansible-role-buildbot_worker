@@ -1,6 +1,9 @@
 [Unit]
 Description=Buildbot Worker %I
 After=network.target
+{% if buildbot_worker_workdir|length %}
+RequiresMountsFor={{ buildbot_worker_workdir }}
+{% endif %}
 
 [Service]
 User={{ buildbot_worker_user }}
@@ -10,7 +13,7 @@ ExecStart={{ buildbot_worker_executable }} --verbose start --nodaemon %I
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 ProtectSystem=full
-ProtectHome=yes
+ProtectHome=no
 PrivateDevices=yes
 PrivateTmp=yes
 
